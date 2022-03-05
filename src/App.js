@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+
 
 function App() {
+  const [authors, setAuthors] = useState([]);
+  const [books, setBooks] = useState([]);
+  const [state, setState] = useState ({
+    startYear: 0,
+    endYear: 0
+  });
+
+  const handleChange = e => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  
+
+  //console.log(currentUser.id);
+
+  // Load data from https://jsonplaceholder.typicode.com/albums?userId=${user.id}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+      <form>
+        <label>
+          Start Year:
+          <input
+            type="text"
+            name="startYear"
+            value={state.startYear}
+            onChange={handleChange}
+            />
+        </label><p/>
+        <label>
+          End Year:
+          <input
+            type="text"
+            name="endYear"
+            value={state.endYear}
+            onChange={handleChange}
+            />
+        </label>
+      </form>
+      </div>
     </div>
   );
 }
